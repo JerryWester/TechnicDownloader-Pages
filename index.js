@@ -21,7 +21,7 @@ function openHttpRequest(method, url, mimeType) {
 }
 function search(searchTerm) {
     return new Promise((resolve, reject) => {
-        openHttpRequest("GET", `http://api.technicpack.net/search?build=999&q=${encodeURIComponent(searchTerm)}`, "application/json")
+        openHttpRequest("GET", `//api.technicpack.net/search?build=999&q=${encodeURIComponent(searchTerm)}`, "application/json")
             .then((value) => {
             resolve(value);
         })
