@@ -1,5 +1,5 @@
 "use strict";
-function openHttpRequest(method, url) {
+function openHttpRequest(method, url, mimeType) {
     return new Promise((resolve, reject) => {
         let xhr = new XMLHttpRequest();
         xhr.onreadystatechange = () => {
@@ -13,12 +13,15 @@ function openHttpRequest(method, url) {
             }
         };
         xhr.open(method, url);
+        if (mimeType) {
+            xhr.overrideMimeType(mimeType);
+        }
         xhr.send();
     });
 }
 function search(searchTerm) {
     return new Promise((resolve, reject) => {
-        openHttpRequest("GET", `http://api.technicpack.net/search?build=999&q=${encodeURIComponent(searchTerm)}`)
+        openHttpRequest("GET", `http://api.technicpack.net/search?build=999&q=${encodeURIComponent(searchTerm)}`, "application/json")
             .then((value) => {
             resolve(value);
         })
